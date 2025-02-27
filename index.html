@@ -62,17 +62,18 @@
 
         .form-wrapper {
             display: flex;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .login-container, .register-container {
             background: var(--form-bg);
             padding: 2.5rem;
-            border-radius: 20px;
+            border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             width: 100%;
             flex-shrink: 0;
             transition: background 0.3s ease;
+            margin: 0 1px; /* Fix for seamless transition */
         }
 
         .brand {
@@ -172,6 +173,15 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .dashboard-btn {
+            width: auto;
+            min-width: 180px;
+            padding: 12px 30px;
+            margin: 1rem auto;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
         @media (max-width: 480px) {
             .login-container, .register-container {
                 padding: 1.5rem;
@@ -186,6 +196,7 @@
 <body>
     <button class="theme-toggle" id="themeToggle">🌙</button>
 
+    <!-- Login/Register Section -->
     <div class="auth-container">
         <div class="form-wrapper">
             <div class="login-container">
@@ -234,11 +245,12 @@
         </div>
     </div>
 
+    <!-- Success Screen -->
     <div class="success-screen">
-        <h2>Download Rival DMA</h2>
-        <p>Your access has been granted. Download the latest version below.</p>
-        <button class="auth-btn" style="margin-top: 2rem;">Download Now</button>
-        <p style="margin-top: 1rem;">Advanced features will be available after installation.</p>
+        <h2>Rival DMA Dashboard</h2>
+        <p>Your access has been granted. Loading control panel...</p>
+        <button class="auth-btn dashboard-btn" onclick="loadDashboard()">Load Menu Dashboard</button>
+        <p style="margin-top: 1rem;">Advanced features now unlocked</p>
     </div>
 
     <script>
@@ -293,6 +305,11 @@
         function handleAuthSuccess() {
             document.querySelector('.auth-container').style.display = 'none';
             successScreen.classList.add('show');
+        }
+
+        function loadDashboard() {
+            // Redirect to dashboard page
+            window.location.href = 'dashboard.html';
         }
     </script>
 </body>
